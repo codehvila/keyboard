@@ -1,0 +1,120 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --linewidth: 78vh;
+  --keybase: 1vh;
+  --keytopmultiplier: 4;
+  --keymultiplier: 5;
+  --keyfontfamily: "sans";
+  --keyfontsize: 3;
+  --keycapposition: 0.2vh;
+  --keyborder: 0.8vh;
+  --keyspacearound: 0.2vh;
+}
+
+body {
+  background-color: #222;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.line {
+  display: flex;
+  justify-content: space-between;
+  width: var(--linewidth);
+
+  margin: var(--keyspacearound) 0;
+}
+
+.key {
+  width: calc(var(--keybase) * var(--keymultiplier));
+  height: calc(var(--keybase) * var(--keymultiplier));
+  border: 1px solid #555;
+  border-radius: calc(var(--keyborder) + 0.4vh);
+
+  position: relative;
+  display: flex;
+  justify-content: center;
+  background-color: hsl(0, 0%, 92%);
+}
+
+.keytop {
+  height: calc(var(--keybase) * var(--keytopmultiplier));
+
+  border: 1px solid #555;
+  border-radius: var(--keyborder);
+
+  font-size: calc(var(--keyfontsize) * 0.6vh);
+  font-family: var(--keyfontfamily);
+  text-transform: uppercase;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+
+  width: auto;
+  left: calc(var(--keycapposition) + 0.2vh);
+  right: calc(var(--keycapposition) + 0.2vh);
+
+  top: var(--keycapposition);
+
+  background: linear-gradient(to right, hsl(0, 0%, 90%), hsl(0, 0%, 98%));
+}
+
+.DoubleChar {
+  font-size: calc(var(--keyfontsize) * 0.5vh);
+}
+
+.ModifierChar {
+  font-size: calc(var(--keyfontsize) * 0.45vh);
+  text-transform: none;
+}
+
+.key125 {
+  width: calc(var(--keybase) * var(--keymultiplier) * 1.25);
+}
+
+.key150 {
+  width: calc(var(--keybase) * var(--keymultiplier) * 1.5);
+}
+
+.key175 {
+  width: calc(var(--keybase) * var(--keymultiplier) * 1.75);
+}
+
+.key200 {
+  width: calc(var(--keybase) * var(--keymultiplier) * 2);
+}
+
+.key225 {
+  width: calc(var(--keybase) * var(--keymultiplier) * 2.25);
+}
+
+.key275 {
+  width: calc(var(--keybase) * var(--keymultiplier) * 2.75);
+}
+
+.key625 {
+  width: calc(var(--keybase) * var(--keymultiplier) * 6.25);
+}
+
+.keyline {
+  background-image: url("./line.png");
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: contain;
+}
+
+.keydot {
+}
