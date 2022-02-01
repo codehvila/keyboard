@@ -4,19 +4,32 @@
 }
 
 :root {
+  /* Keyboard */
   --linewidth: 78vh;
   --keybase: 1vh;
   --keytopmultiplier: 4;
   --keymultiplier: 5;
   --keyfontfamily: "sans";
   --keyfontsize: 3;
+  --keycolor: #111;
   --keycapposition: 0.2vh;
   --keyborder: 0.8vh;
-  --keyspacearound: 0.2vh;
+  --keyspacearound: 0.12vh;
+
+  --keybgcolor: hsl(0, 0%, 92%);
+  --keytopbgcolor: linear-gradient(to right, hsl(0, 0%, 90%), hsl(0, 0%, 98%));
+  --keybordercolor: #ddd;
+
+  /* Slider */
+  --sliderwidth: 40px;
+  --sliderheight: 24px; /* --sliderwidth / 2 + 4 */
+  --sliderbefore: 16px; /* --sliderwidth / 2 - 4 */
 }
 
 body {
-  background-color: #222;
+  background-color: #888;
+  font-size: 0.8rem;
+  font-family: var(--keyfontfamily);
 }
 
 .container {
@@ -38,24 +51,27 @@ body {
 .key {
   width: calc(var(--keybase) * var(--keymultiplier));
   height: calc(var(--keybase) * var(--keymultiplier));
-  border: 1px solid #555;
+  border: 1px solid var(--keybordercolor);
   border-radius: calc(var(--keyborder) + 0.4vh);
 
   position: relative;
   display: flex;
   justify-content: center;
-  background-color: hsl(0, 0%, 92%);
+  background-color: var(--keybgcolor); /* hsl(0, 0%, 92%); */
+
+  transition: background-color 0.1s;
 }
 
 .keytop {
   height: calc(var(--keybase) * var(--keytopmultiplier));
 
-  border: 1px solid #555;
+  border: 1px solid var(--keybordercolor);
   border-radius: var(--keyborder);
 
   font-size: calc(var(--keyfontsize) * 0.6vh);
   font-family: var(--keyfontfamily);
   text-transform: uppercase;
+  color: var(--keycolor);
 
   display: flex;
   justify-content: center;
@@ -69,7 +85,9 @@ body {
 
   top: var(--keycapposition);
 
-  background: linear-gradient(to right, hsl(0, 0%, 90%), hsl(0, 0%, 98%));
+  background: var(--keytopbgcolor);
+  /* linear-gradient(to right, hsl(0, 0%, 90%), hsl(0, 0%, 98%)); */
+  transition: background-color 0.1s;
 }
 
 .DoubleChar {
@@ -117,4 +135,78 @@ body {
 }
 
 .keydot {
+}
+
+.line.switchcontainer {
+  display: flex;
+  justify-content: end;
+  align-content: center;
+}
+.label {
+  line-height: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/**** Slider ****/
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: var(--sliderwidth);
+  height: var(--sliderheight);
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #333;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: var(--sliderbefore);
+  width: var(--sliderbefore);
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #f33a21;
+}
+
+input:focus:checked + .slider {
+  box-shadow: 0 0 1px rgb(247, 190, 4);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #eee;
+}
+
+input:checked + .slider:before {
+  transform: translateX(var(--sliderbefore));
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: var(--sliderheight);
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }
